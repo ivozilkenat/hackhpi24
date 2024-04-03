@@ -4,9 +4,11 @@ import Axios from "axios";
 function App() {
   const [products, setProducts] = useState([]);
 
+  const hostname = window.location.hostname;
+  
   const fetchProducts = async () => {
     const { data } = await Axios.get(
-      "http://:3001/api/items/"
+      `http://${hostname}:3001/api/items/`
     );
     const products = data;
     setProducts(products);
