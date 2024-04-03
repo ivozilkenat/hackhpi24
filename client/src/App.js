@@ -5,10 +5,11 @@ function App() {
   const [products, setProducts] = useState([]);
 
   const hostname = window.location.hostname;
-  
+  const protocol = window.location.protocol;
+
   const fetchProducts = async () => {
     const { data } = await Axios.get(
-      `http://${hostname}:3001/api/items/`
+      `${protocol}//${hostname}:3001/api/items/`
     );
     const products = data;
     setProducts(products);
