@@ -6,10 +6,11 @@ function App() {
 
   const hostname = window.location.hostname;
   const protocol = window.location.protocol;
+  const port = hostname === "localhost" ? "3001" : "443";
 
   const fetchProducts = async () => {
     const { data } = await Axios.get(
-      `${protocol}//${hostname}:3001/api/items/`
+      `${protocol}//${hostname}:${port}/api/items/`
     );
     const products = data;
     setProducts(products);
