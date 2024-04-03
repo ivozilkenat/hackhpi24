@@ -3,6 +3,6 @@ from fastapi import APIRouter
 
 router = APIRouter()
 
-@router.get("/users/")
+@router.get("/api/users/")
 async def read_users():
     return [{"username": "johndoe"}, {"username": "janedoe"}]
