@@ -15,10 +15,10 @@ RUN apt-get update && apt-get install -y curl gnupg && \
 RUN python install.py
 
 # Expose the port the backend server listens on
-EXPOSE 3000
+EXPOSE 80
 
 # Expose the port the frontend server listens on
-EXPOSE 3001
+EXPOSE 81
 
 # Command to run the backend server
 # Assuming your backend server is setup to run with a file named 'server.py'
