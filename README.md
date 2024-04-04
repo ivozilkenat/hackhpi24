@@ -1,7 +1,18 @@
 # hackhpi24
 
-## Start Frontend:
-`cd frontend`
-`npm start`
 
-now Frontend can be viewed at `http://localhost:3000/`
+## Development
+### Prerequisites:
+- npm package manager
+- python venv
+
+### Install dependencies:
+`python ./install.py`
+
+### Run frontend & backend:
+`python ./start.py`
+
+## Deployment
+- Push to branch `master`
+  - Wait for action to build package & webserver to run container
+- View at `hackhpi24.ivo-zilkenat.de`
