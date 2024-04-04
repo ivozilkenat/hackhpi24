@@ -15,4 +15,4 @@
 ## Deployment
 - Push to branch `master`
   - Wait for action to build package & webserver to run container
-- View at `hackhpi24.ivo-zilkenat.de`
+- View at [hackhpi24.ivo-zilkenat.de](hackhpi24.ivo-zilkenat.de)
