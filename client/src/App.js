@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
+import MapComponent from './components/RealtimeMap';
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -21,10 +22,8 @@ function App() {
   }, []);
 
   return (
-    <div>
-      {products.map((product) => (
-        <p key={product.name}>{product.name}</p>
-      ))}
+    <div className="App">
+      <MapComponent />
     </div>
   );
 }
