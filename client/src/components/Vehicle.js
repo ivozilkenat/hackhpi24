@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import './css/Vehicle.css';
 
-function Vehicle({ data }) {
+function Train({ data }) {
   return (
     <div>
       <h2>{data.type}</h2>
@@ -12,4 +12,4 @@ function Vehicle({ data }) {
   );
 }
 
-export default Vehicle;
+export default Train;
