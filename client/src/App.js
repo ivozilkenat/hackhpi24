@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import MapComponent from './components/RealtimeMap';
-import Title from './components/Title';
+import Header from './components/Header';
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -23,7 +23,7 @@ function App() {
 
   return (
     <div className="App">
-      <Title />
+      <Header />
       <MapComponent />
     </div>
   );
