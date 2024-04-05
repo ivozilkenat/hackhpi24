@@ -29,8 +29,6 @@ def install_backend_dependencies():
         # Linux and macOS use this command
         run_command('. venv/bin/activate && pip install -r requirements.txt')
 
-    print("Dependencies installed successfully.")
-    
     os.chdir("..")
 
 def main():
