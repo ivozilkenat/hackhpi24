@@ -6,8 +6,8 @@ class Position(BaseModel):
     lon: float = Field(..., example=-74.0060)
 
 class Utilization(BaseModel):
-    abs: int = Field(..., example=50)
-    rel: float = Field(..., example=0.75)
+    abs: int | None = Field(..., example=50)
+    rel: float | None = Field(..., example=0.75)
 
 class TrafficDataItem(BaseModel):
     id: str = Field(..., example="1")

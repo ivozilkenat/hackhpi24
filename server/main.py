@@ -1,6 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from routers import items, users, trafficData, updateUtilization
+from routers import trafficData, updateUtilization
+from fetch_radar import fetch_radar_data_periodically
+import asyncio
 
 app = FastAPI()
 
@@ -13,7 +15,12 @@ app.add_middleware(
     allow_headers=["*"],  # Allows all headers
 )
 
-app.include_router(items.router, prefix="/api")
-app.include_router(users.router, prefix="/api")
 app.include_router(trafficData.router, prefix="/api")
 app.include_router(updateUtilization.router, prefix="/api")
+# app.include_router(radar.router, prefix="/api")
+
+@app.on_event("startup")
+async def app_startup():
+    task = asyncio.create_task(
+        fetch_radar_data_periodically()
+    )
