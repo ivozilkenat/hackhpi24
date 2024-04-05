@@ -1,11 +1,11 @@
-from typing import List
+from typing import Dict
 from models import trafficDataItem
 
-trafficDataList: List[trafficDataItem.TrafficDataItem] = list()
+trafficDataDict: Dict[str, trafficDataItem.TrafficDataItem] = dict()
 
 # Example traffic data (you would fetch or compute this data in a real application)
-trafficDataList = [
-    trafficDataItem.TrafficDataItem(
+trafficDataDict = {
+    "1": trafficDataItem.TrafficDataItem(
         id="1",
         type="Bus",
         subType="City Bus",
@@ -15,4 +15,4 @@ trafficDataList = [
         utilization=trafficDataItem.Utilization(abs=30, rel=0.6)
     ),
     # Add more items as needed...
-]
+}

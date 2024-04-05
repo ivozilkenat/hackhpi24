@@ -1,11 +1,11 @@
 from fastapi import APIRouter
 from models import trafficDataItem
-from typing import List
+from typing import Dict
 
-from database import trafficDataList
+from database import trafficDataDict
 
 router = APIRouter()
 
-@router.post("/trafficData/", response_model=List[trafficDataItem.TrafficDataItem])
+@router.post("/trafficData/", response_model=Dict[str, trafficDataItem.TrafficDataItem])
 async def read_trafficData(request: trafficDataItem.TrafficDataRequest):
-    return trafficDataList
+    return trafficDataDict
