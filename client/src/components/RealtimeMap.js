@@ -22,8 +22,7 @@ function RealtimeMap() {
 
 function MapComponent() {
   return (
-<MapContainer center={[0, 0]} zoom={13} style={{ height: "400px", marginTop: "80px", marginBottom: "90px" }} >
-            }} >
+      <MapContainer center={[0, 0]} zoom={13} style={{ height: "400px", marginTop: "80px", marginBottom: "90px" }} >
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
       <RealtimeMap />
     </MapContainer>
