@@ -35,7 +35,10 @@ function RealtimeMap() {
       const bounds = map.getBounds();
       const upperLeft = bounds.getNorthWest();
       const lowerRight = bounds.getSouthEast();
-      fetch('https://hackhpi24.ivo-zilkenat.de/api/trafficData/', {
+      const hostname = window.location.hostname;
+      const protocol = window.location.protocol;
+      const port = hostname === "localhost" ? "3001" : "443";
+      fetch(`${protocol}//${hostname}:${port}/api/trafficData`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
