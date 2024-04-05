@@ -31,38 +31,42 @@ function RealtimeMap() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    const bounds = map.getBounds();
-    const upperLeft = bounds.getNorthWest();
-    const lowerRight = bounds.getSouthEast();
-    fetch('https://hackhpi24.ivo-zilkenat.de/api/trafficData/', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        "bounds": {
-          "upper-left": {
-            "lat": upperLeft.lat,
-            "lon": upperLeft.lng
-          },
-          "lower-right": {
-            "lat": lowerRight.lat,
-            "lon": lowerRight.lng
+    const interval = setInterval(() => {
+      const bounds = map.getBounds();
+      const upperLeft = bounds.getNorthWest();
+      const lowerRight = bounds.getSouthEast();
+      fetch('https://hackhpi24.ivo-zilkenat.de/api/trafficData/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          "bounds": {
+            "upper-left": {
+              "lat": upperLeft.lat,
+              "lon": upperLeft.lng
+            },
+            "lower-right": {
+              "lat": lowerRight.lat,
+              "lon": lowerRight.lng
+            }
           }
-        }
+        })
       })
-    })
-      .then(response => response.json())
-      .then(data => {
-        setData(data);
-      });
-  }, []);
+        .then(response => response.json())
+        .then(data => {
+          setData(data);
+        });
+    }, 1000);
+
+  return () => clearInterval(interval);
+}, []);
 
   return Object.values(data).map(item => {
     let icon;
-    if (item.type === 'Tram') {
+    if (item.subtype === 'Tram') {
       icon = tramIcon;
-    } else if (item.type === 'Train') {
+    } else if (item.subtype === 'Train') {
       icon = trainIcon;
     } else {
       icon = busIcon;
