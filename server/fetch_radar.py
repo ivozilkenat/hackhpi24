@@ -2,7 +2,7 @@ import httpx
 from fastapi import HTTPException
 from models import trafficDataItem
 import asyncio
-from database import trafficDataDict
+import database
 
 async def fetch_radar_data(north: float, west: float, south: float, east: float, results: int = 256, duration: int = 30, frames: int = 3, polylines: bool = True, language: str = "en"):
     url = "https://v6.vbb.transport.rest/radar"
@@ -41,12 +41,11 @@ async def fetch_radar_data_periodically(period_time: int = 1):
             polylines=True, 
             language="en"
         )
-
-        global trafficDataDict 
-        trafficDataDict = dict()
+ 
+        database.trafficDataDict = dict()
         for movement in radar_data["movements"]:
                     
-            trafficDataDict[movement["tripId"]] = trafficDataItem.TrafficDataItem(
+            database.trafficDataDict[movement["tripId"]] = trafficDataItem.TrafficDataItem(
                 id=movement["tripId"],
                 type=movement["line"]["mode"],
                 subType=movement["line"]["product"],
