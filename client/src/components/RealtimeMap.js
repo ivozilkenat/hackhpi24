@@ -3,11 +3,28 @@ import L from 'leaflet';
 import './../../node_modules/leaflet/dist/leaflet.css'
 import './css/RealtimeMap.css';
 import 'leaflet-realtime';
-import Bus from './Bus';
-import Tram from './Tram';
-import Train from './Train';
+import Vehicle from './Vehicle.js';
 import { Marker } from 'react-leaflet';
+import { Popup } from 'react-leaflet';
 import { MapContainer, TileLayer, useMap } from 'react-leaflet';
+import busIconUrl from '../resources/bus_icon.png';
+import trainIconUrl from '../resources/train_icon.png';
+import tramIconUrl from '../resources/tram_icon.png';
+
+const busIcon = L.icon({
+  iconUrl: busIconUrl,
+  iconSize: [40, 40],
+});
+
+const trainIcon = L.icon({
+  iconUrl: trainIconUrl,
+  iconSize: [25, 41],
+});
+
+const tramIcon = L.icon({
+  iconUrl: tramIconUrl,
+  iconSize: [25, 41],
+});
 
 function RealtimeMap() {
   const map = useMap();
@@ -40,15 +57,28 @@ function RealtimeMap() {
         setData(data);
       });
   }, []);
-  data["2"] = {"id": "2", "type": "bus", "position": {"lat": 52.3906, "lon": 13.0645}};
 
-  return Object.values(data).map(item => (
-    <Marker position={[item.position.lat, item.position.lon]}>
-      {item.type === "bus" && <Bus data={item} />}
-      {item.type === "tram" && <Tram data={item} />}
-      {item.type === "train" && <Train data={item} />}
-    </Marker>
-  ));
+  return Object.values(data).map(item => {
+    let icon;
+    if (item.type === 'Tram') {
+      icon = tramIcon;
+    } else if (item.type === 'Train') {
+      icon = trainIcon;
+    } else {
+      icon = busIcon;
+    }
+
+    return (
+      <Marker position={[item.position.lat, item.position.lon]} icon={icon}>
+        <Popup>
+          <p>
+            Absolute Utilization: {item.utilization.abs} <br/>
+            Relative Utilization: {item.utilization.rel}
+          </p>
+        </Popup>
+      </Marker>
+    );
+  });
 }
 
 function MapComponent() {
