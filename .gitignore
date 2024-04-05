@@ -1,6 +1,10 @@
 #####################
 # Python
 #####################
+# testing
+output.json
+outputlines.json
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

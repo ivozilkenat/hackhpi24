@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
+import MapComponent from './components/RealtimeMap';
+import Title from './components/Title';
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -15,16 +17,14 @@ function App() {
     const products = data;
     setProducts(products);
   };
-
   useEffect(() => {
     fetchProducts();
   }, []);
 
   return (
-    <div>
-      {products.map((product) => (
-        <p key={product.name}>{product.name}</p>
-      ))}
+    <div className="App">
+      <Title />
+      <MapComponent />
     </div>
   );
 }
