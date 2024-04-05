@@ -16,7 +16,6 @@ function App() {
     const products = data;
     setProducts(products);
   };
-
   useEffect(() => {
     fetchProducts();
   }, []);
