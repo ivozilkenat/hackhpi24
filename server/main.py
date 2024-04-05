@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from routers import items, users
+from routers import items, users, trafficData
 
 app = FastAPI()
 
@@ -13,5 +13,6 @@ app.add_middleware(
     allow_headers=["*"],  # Allows all headers
 )
 
-app.include_router(items.router)
-app.include_router(users.router)
+app.include_router(items.router, prefix="/api")
+app.include_router(users.router, prefix="/api")
+app.include_router(trafficData.router, prefix="/api")
