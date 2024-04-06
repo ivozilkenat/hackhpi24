@@ -41,7 +41,9 @@ function RealtimeMap() {
   const tripMarkers = Object.values(data).map(item => {
     let icon;
     let colorClass;
-    if (item.utilization.rel < 0.3) {
+    if (item.utilization.rel == null) {
+      colorClass = 'gray-icon';
+    } else if (item.utilization.rel < 0.3) {
       colorClass = 'green-icon';
     } else if (item.utilization.rel >= 0.3 && item.utilization.rel <= 0.7) {
       colorClass = 'yellow-icon';
