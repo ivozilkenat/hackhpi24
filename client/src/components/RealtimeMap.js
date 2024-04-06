@@ -41,20 +41,18 @@ function RealtimeMap() {
   const tripMarkers = Object.values(data).map(item => {
     // console.log(item.utilization.rel);
     let icon;
-    let colorClass;
+    let color;
     if (item.utilization.rel == null) {
-      colorClass = 'gray-icon';
+      color = 'gray';
     } else if (item.utilization.rel < 0.3) {
-      colorClass = 'green-icon';
+      color = 'green';
     } else if (item.utilization.rel >= 0.3 && item.utilization.rel <= 0.7) {
-      colorClass = 'yellow-icon';
+      color = 'orange';
     } else {
-      colorClass = 'red-icon';
+      color = 'red';
     }
 
-    icon = getIcon(item.subType);
-
-    icon.options.className = `${colorClass} vehicle-icon`;
+    icon = getIcon(item.subType, color);
 
     console.log(icon.options)
 

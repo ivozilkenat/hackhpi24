@@ -7,6 +7,7 @@ function Banner() {
   <div className="brand">Wischen & Mischen</div>
   <div className="spacer"></div> {/* This will take up the unused space */}
   <div className="nav-items">
+  <div className="nav-item"><a href="/docs" target="_blank">Docs</a></div>
     <div className="nav-item"><a href="https://www.youtube.com/watch?v=xvFZjo5PgG0" target="_blank">Home</a></div>
     <div className="nav-item"><a href="https://www.youtube.com/watch?v=xvFZjo5PgG0" target="_blank">Data Solutions</a></div>
     <div className="nav-item"><a href="https://www.youtube.com/watch?v=xvFZjo5PgG0" target="_blank">About</a></div>

@@ -1,66 +1,215 @@
 import L from 'leaflet';
-import busIconUrl from '../resources/bus_icon.png';
-import trainIconUrl from '../resources/train_icon.png';
-import tramIconUrl from '../resources/tram_icon.png';
-import subwayIconUrl from '../resources/subway_icon.png';
-import ferryIconUrl from '../resources/ferry_icon.png';
-import expressIconUrl from '../resources/express_icon.png';
-import suburbanIconUrl from '../resources/suburban_icon.png';
 
-const busIcon = L.icon({
-  iconUrl: busIconUrl,
-  iconSize: [40, 40],
-});
+import busIconGrayUrl from '../resources/bus_icon_gray.png';
+import busIconGreenUrl from '../resources/bus_icon_green.png';
+import busIconOrangeUrl from '../resources/bus_icon_orange.png';
+import busIconRedUrl from '../resources/bus_icon_red.png';
+import trainIconGrayUrl from '../resources/train_icon_gray.png';
+import trainIconGreenUrl from '../resources/train_icon_green.png';
+import trainIconOrangeUrl from '../resources/train_icon_orange.png';
+import trainIconRedUrl from '../resources/train_icon_red.png';
+import tramIconGrayUrl from '../resources/tram_icon_gray.png';
+import tramIconGreenUrl from '../resources/tram_icon_green.png';
+import tramIconOrangeUrl from '../resources/tram_icon_orange.png';
+import tramIconRedUrl from '../resources/tram_icon_red.png';
+import subwayIconGrayUrl from '../resources/subway_icon_gray.png';
+import subwayIconGreenUrl from '../resources/subway_icon_green.png';
+import subwayIconOrangeUrl from '../resources/subway_icon_orange.png';
+import subwayIconRedUrl from '../resources/subway_icon_red.png';
+import ferryIconGrayUrl from '../resources/ferry_icon_gray.png';
+import ferryIconGreenUrl from '../resources/ferry_icon_green.png';
+import ferryIconOrangeUrl from '../resources/ferry_icon_orange.png';
+import ferryIconRedUrl from '../resources/ferry_icon_red.png';
+import expressIconGrayUrl from '../resources/express_icon_gray.png';
+import expressIconGreenUrl from '../resources/express_icon_green.png';
+import expressIconOrangeUrl from '../resources/express_icon_orange.png';
+import expressIconRedUrl from '../resources/express_icon_red.png';
+import suburbanIconGrayUrl from '../resources/suburban_icon_gray.png';
+import suburbanIconGreenUrl from '../resources/suburban_icon_green.png';
+import suburbanIconOrangeUrl from '../resources/suburban_icon_orange.png';
+import suburbanIconRedUrl from '../resources/suburban_icon_red.png';
 
-const trainIcon = L.icon({
-  iconUrl: trainIconUrl,
-  iconSize: [25, 25],
-});
+// Updated icon function that uses the color parameter
+const busIcon = (color) => {
+  let url;
+  switch(color) {
+    case 'gray':
+      url = busIconGrayUrl;
+      break;
+    case 'green':
+      url = busIconGreenUrl;
+      break;
+    case 'orange':
+      url = busIconOrangeUrl;
+      break;
+    case 'red':
+      url = busIconRedUrl;
+      break;
+  }
+  return L.icon({
+    iconUrl: url,
+    iconSize: [50, 50],
+    className: ""
+  });
+};
 
-const tramIcon = L.icon({
-  iconUrl: tramIconUrl,
-  iconSize: [40, 40],
-});
+const trainIcon = (color) => {
+  let url;
+  switch(color) {
+    case 'gray':
+      url = trainIconGrayUrl;
+      break;
+    case 'green':
+      url = trainIconGreenUrl;
+      break;
+    case 'orange':
+      url = trainIconOrangeUrl;
+      break;
+    case 'red':
+      url = trainIconRedUrl;
+      break;
+  }
+  return L.icon({
+    iconUrl: url,
+    iconSize: [50, 50],
+    className: ""
+  });
+};
 
-const subwayIcon = L.icon({
-  iconUrl: subwayIconUrl,
-  iconSize: [40, 40],
-});
+const tramIcon = (color) => {
+  let url;
+  switch(color) {
+    case 'gray':
+      url = tramIconGrayUrl;
+      break;
+    case 'green':
+      url = tramIconGreenUrl;
+      break;
+    case 'orange':
+      url = tramIconOrangeUrl;
+      break;
+    case 'red':
+      url = tramIconRedUrl;
+      break;
+  }
+  return L.icon({
+    iconUrl: url,
+    iconSize: [50, 50],
+    className: ""
+  });
+};
 
-const ferryIcon = L.icon({
-  iconUrl: ferryIconUrl, 
-  iconSize: [40, 40],
-});
+const subwayIcon = (color) => {
+  let url;
+  switch(color) {
+    case 'gray':
+      url = subwayIconGrayUrl;
+      break;
+    case 'green':
+      url = subwayIconGreenUrl;
+      break;
+    case 'orange':
+      url = subwayIconOrangeUrl;
+      break;
+    case 'red':
+      url = subwayIconRedUrl;
+      break;
+  }
+  return L.icon({
+    iconUrl: url,
+    iconSize: [50, 50],
+    className: ""
+  });
+};
 
-const expressIcon = L.icon({
-  iconUrl: expressIconUrl,
-  iconSize: [40, 40],
-});
+const ferryIcon = (color) => {
+  let url;
+  switch(color) {
+    case 'gray':
+      url = ferryIconGrayUrl;
+      break;
+    case 'green':
+      url = ferryIconGreenUrl;
+      break;
+    case 'orange':
+      url = ferryIconOrangeUrl;
+      break;
+    case 'red':
+      url = ferryIconRedUrl;
+      break;
+  }
+  return L.icon({
+    iconUrl: url,
+    iconSize: [50, 50],
+    className: ""
+  });
+};
 
-const suburbanIcon = L.icon({
-  iconUrl: suburbanIconUrl,
-  iconSize: [32, 32],
-});
+const expressIcon = (color) => {
+  let url;
+  switch(color) {
+    case 'gray':
+      url = expressIconGrayUrl;
+      break;
+    case 'green':
+      url = expressIconGreenUrl;
+      break;
+    case 'orange':
+      url = expressIconOrangeUrl;
+      break;
+    case 'red':
+      url = expressIconRedUrl;
+      break;
+  }
+  return L.icon({
+    iconUrl: url,
+    iconSize: [50, 50],
+    className: ""
+  });
+};
+
+const suburbanIcon = (color) => {
+  let url;
+  switch(color) {
+    case 'gray':
+      url = suburbanIconGrayUrl;
+      break;
+    case 'green':
+      url = suburbanIconGreenUrl;
+      break;
+    case 'orange':
+      url = suburbanIconOrangeUrl;
+      break;
+    case 'red':
+      url = suburbanIconRedUrl;
+      break;
+  }
+  return L.icon({
+    iconUrl: url,
+    iconSize: [50, 50],
+    className: ""
+  });
+};
 
 
-export function getIcon(subtype) {
+export function getIcon(subtype, color) {
   switch (subtype) {
     case "suburban":
-      return suburbanIcon;
+      return suburbanIcon(color);
     case "subway":
-      return subwayIcon;
+      return subwayIcon(color);
     case "tram":
-      return tramIcon;
+      return tramIcon(color);
     case "bus":
-      return busIcon;
+      return busIcon(color);
     case "ferry":
-      return ferryIcon;
+      return ferryIcon(color);
     case "express":
-      return expressIcon;
+      return expressIcon(color);
     case "regional":
-      return trainIcon;
+      return trainIcon(color);
     default:
-      return busIcon;
+      return busIcon(color);
   }
 }
 
