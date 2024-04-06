@@ -38,7 +38,7 @@ async def fetch_station_data_periodically(period_time: int = 1800):
                     
             # Map the external API response to your StationInfo model
             # This is a basic mapping, adjust according to the actual response structure and your model
-            newStationDataDict[stationId] = database.station.StationDataItem(
+            newStationDataDict[stationId] = station.StationDataItem(
                 id=stationId,
                 name=item["name"],
                 position=core.Position(
@@ -61,7 +61,7 @@ async def fetch_station_data_periodically(period_time: int = 1800):
             )  # Update this based on the actual data and mapping logic
             
         if stationId in database.stationDataDict:
-                database.stationDataDict[stationId].utilization = database.stationDataDict[stationId].utilization
+                newStationDataDict[stationId].utilization = database.stationDataDict[stationId].utilization
             
         database.stationDataDict = newStationDataDict
             
