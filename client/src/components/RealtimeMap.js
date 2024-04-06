@@ -54,7 +54,6 @@ function RealtimeMap() {
     icon = getIcon(item.subType);
 
     icon.options.className = `${colorClass} vehicle-icon`;
-
     return (
       <Marker position={[item.position.lat, item.position.lon]} icon={icon}>
         <Popup>
