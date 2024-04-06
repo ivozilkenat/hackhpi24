@@ -26,13 +26,13 @@ function RealtimeMap() {
   }, []);
 
   useEffect(() => {
-    fetchCurrentData(map, 'stations') // use fetchCurrentData with 'stations' route
+    fetchCurrentData(map, 'stations')
       .then(data => {
         setStations(data);
       });
   }, []);
-
-  return Object.values(data).map(item => {
+  
+  const tripMarkers = Object.values(data).map(item => {
     let icon;
     let colorClass;
     if (item.utilization.rel < 0.3) {
@@ -58,6 +58,22 @@ function RealtimeMap() {
       </Marker>
     );
   });
+  
+  const stationMarkers = Object.values(stations).map(item => {
+    return (
+      <Marker position={[item.position.lat, item.position.lon]}>
+        <Popup>
+          <h1>{item.name}</h1>
+          <p>
+            Absolute Utilization: {item.utilization.abs} <br/>
+            Relative Utilization: {item.utilization.rel}
+          </p>
+        </Popup>
+      </Marker>
+    );
+  });
+
+  return [...tripMarkers, ...stationMarkers];
 }
 
 function MapComponent() {
