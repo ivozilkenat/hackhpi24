@@ -62,7 +62,7 @@ function RealtimeMap() {
       const hostname = window.location.hostname;
       const protocol = window.location.protocol;
       const port = hostname === "localhost" ? "3001" : "443";
-      fetch(`${protocol}//${hostname}:${port}/api/trips`, {
+      fetch(`${protocol}//${hostname}:${port}/api/trips/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
