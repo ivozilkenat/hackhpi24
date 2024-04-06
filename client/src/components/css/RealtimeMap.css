@@ -8,7 +8,7 @@
 
 .popup-content {
   max-width: 600px; /* or a higher value to allow more content in one line */
-  overflow-x: auto; /* Allows horizontal scrolling */
+  /*overflow-x: auto; /* Allows horizontal scrolling */
 }
 
 .popup-heading {
@@ -22,6 +22,10 @@
   padding: 5px;
   margin-top: 5px;
   white-space: pre-wrap; /* Allows text to wrap */
+}
+
+.info-line {
+  width: 100%;
 }
 
 .info-label {

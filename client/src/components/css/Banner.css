@@ -1,19 +1,20 @@
 /* In Navbar.css */
 .navbar {
   display: flex;
-  flex-direction: row; /* Default direction */
+  flex-direction: row;
   align-items: center;
-  justify-content: space-between; /* Align items with space between */
+  justify-content: space-between;
   background-color: #333;
   color: white;
-  padding: 5px 20px 5px 0px; /* Added padding to the right and left */
-  width: 100%; /* Full width */
+  padding: 10px 20px 10px 0px;
+  width: 100%;
   position: fixed;
-  z-index: 1000; /* Ensures it's above the map */
+  z-index: 1000;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); 
 }
 
 .brand {
-  padding: 10px;
+  padding: 14px;
   font-size: large;
   font-weight: bold;
   /* margin-left: 50px; */ /* Ensures some space between the brand and the nav items */
@@ -25,15 +26,17 @@
 
 .nav-item {
   margin: 0 10px;
-  padding: 5px 10px; /* Padding inside each nav item for better touch targets */
+  padding: 10px 12px; /* Padding inside each nav item for better touch targets */
+  font-size: 16px;
   cursor: pointer;
   background-color: #3c3c3c; /* Slightly darker background for clickable items */
   border-radius: 5px; /* Rounded borders for a softer look */
   transition: background-color 0.3s; /* Smooth transition for hover effect */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Slight shadow for depth */
 }
 
 .nav-item:hover {
-  background-color: #555; /* Slightly lighter on hover for feedback */
+  background-color: #222222; /* Slightly lighter on hover for feedback */
   text-decoration: none; /* Overrides the underline from previous styles if needed */
 }
 
