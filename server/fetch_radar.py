@@ -43,9 +43,9 @@ async def fetch_radar_data_periodically(period_time: int = 5):
  
         database.trafficDataDict = dict()
         for movement in radar_data["movements"]:
-                    
-            database.trafficDataDict[movement["tripId"]] = trafficDataItem.TrafficDataItem(
-                id=movement["tripId"],
+            tripId = movement["tripId"].replace("|", "")
+            database.trafficDataDict[tripId] = trafficDataItem.TrafficDataItem(
+                id=tripId,
                 type=movement["line"]["mode"],
                 subType=movement["line"]["product"],
                 position=core.Position(
