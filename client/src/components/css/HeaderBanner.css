@@ -1,0 +1,10 @@
+.banner{
+    background-color: rgba(49, 112, 142, 0.5);
+    padding: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    height: 100px;
+    justify-content: center;
+    z-index: 100;
+}

@@ -10,6 +10,10 @@ import { MapContainer, TileLayer, useMap } from 'react-leaflet';
 import busIconUrl from '../resources/bus_icon.png';
 import trainIconUrl from '../resources/train_icon.png';
 import tramIconUrl from '../resources/tram_icon.png';
+import subwayIconUrl from '../resources/subway_icon.png';
+import ferryIconUrl from '../resources/ferry_icon.png';
+import expressIconUrl from '../resources/express_icon.png';
+import suburbanIconUrl from '../resources/suburban_icon.png';
 
 const busIcon = L.icon({
   iconUrl: busIconUrl,
@@ -23,6 +27,16 @@ const trainIcon = L.icon({
 
 const tramIcon = L.icon({
   iconUrl: tramIconUrl,
+  iconSize: [25, 41],
+});
+
+const subwayIcon = L.icon({
+  iconUrl: subwayIconUrl,
+  iconSize: [25, 41],
+});
+
+const ferryIcon = L.icon({
+  iconUrl: ferryIconUrl,
   iconSize: [25, 41],
 });
 
@@ -67,12 +81,31 @@ function RealtimeMap() {
 
   return Object.values(data).map(item => {
     let icon;
-    if (item.subtype === 'Tram') {
-      icon = tramIcon;
-    } else if (item.subtype === 'Train') {
-      icon = trainIcon;
-    } else {
-      icon = busIcon;
+    switch (item.subtype) {
+      case "suburban":
+        icon = suburbanIcon;
+        break;
+      case "subway":
+        icon = subwayIcon;
+        break;
+      case "tram":
+        icon = tramIcon;
+        break;
+      case "bus":
+        icon = busIcon;
+        break;
+      case "ferry":
+        icon = ferryIcon;
+        break;
+      case "express":
+        icon = expressIcon;
+        break;
+      case "regional":
+        icon = trainIcon;
+        break;
+      default:
+        icon = busIcon;
+        break;
     }
 
     return (
