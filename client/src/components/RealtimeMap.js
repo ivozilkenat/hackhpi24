@@ -144,7 +144,7 @@ function RealtimeMap() {
 
 function MapComponent() {
   return (
-    <MapContainer center={[52.3906, 13.0645]} zoom={13} className="map">
+    <MapContainer center={[52.3906, 13.0645]} zoom={13} zoomControl={false} className="map">
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
       <RealtimeMap />
     </MapContainer>

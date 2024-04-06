@@ -1,135 +1,70 @@
+/* In Navbar.css */
 .navbar {
-  padding-left: 1em;
-  padding-right: 1em;
-  position: fixed;
-  width: 100%;
-  background-color: rgba(255, 255, 255, 0.3);
-  box-shadow: 0 0 0.5em 0.5em rgba(0, 0, 0, 0.1);
-  z-index: 1000;
-}
-
-.tabs{
   display: flex;
-  justify-content: end;
-  list-style-type: none;
+  flex-direction: row; /* Default direction */
+  align-items: center;
+  justify-content: space-between; /* Align items with space between */
+  background-color: #333;
+  color: white;
+  padding: 5px 20px 5px 0px; /* Added padding to the right and left */
+  width: 100%; /* Full width */
+  position: fixed;
+  z-index: 1000; /* Ensures it's above the map */
 }
 
-.first-tab{
-  left: 0;
-  display: block;
-  font-size: min(22.652px, 2.25vw);
+.brand {
+  padding: 10px;
+  font-size: large;
+  font-weight: bold;
+  /* margin-left: 50px; */ /* Ensures some space between the brand and the nav items */
 }
 
-.empty{
-  width: 70%;
-  margin-left: 1300px;
+.nav-items {
+  display: flex; /* Display nav items in a row */
 }
 
-.tab{
-  padding-left: 0.5em;
-  padding-right: 0m;
-  font-size: min(22.652px, 2.25vw);
+.nav-item {
+  margin: 0 10px;
+  padding: 5px 10px; /* Padding inside each nav item for better touch targets */
+  cursor: pointer;
+  background-color: #3c3c3c; /* Slightly darker background for clickable items */
+  border-radius: 5px; /* Rounded borders for a softer look */
+  transition: background-color 0.3s; /* Smooth transition for hover effect */
 }
 
-a.nostyle:link {
-    text-decoration: inherit;
-    color: inherit;
-    cursor: auto;
+.nav-item:hover {
+  background-color: #555; /* Slightly lighter on hover for feedback */
+  text-decoration: none; /* Overrides the underline from previous styles if needed */
 }
 
-a.nostyle:visited {
-    text-decoration: inherit;
-    color: inherit;
-    cursor: auto;
+.nav-item a {
+  color: inherit; /* Makes the link color the same as the parent element */
+  text-decoration: none; /* Removes the underline from links */
+  cursor: default; /* Changes the cursor to the default arrow, not the pointer typically used for links */
 }
 
-.mobile-nav-toggle-middle{
-  display: none;
-}
-.mobile-nav-toggle-top{
-  display: none;
-}
-.mobile-nav-toggle-bottom{
-  display: none;
-}
-.mobile-nav-toggle{
-  padding: 5vw;
-  margin-left: 5.5rem;
-  margin-bottom: 1.5rem;
-  border: none;
-  color: transparent;
-  display: none;
+/* Optional: Style for hover effect to make it look like normal text */
+.nav-item a:hover {
+  text-decoration: none;
 }
 
-@media (max-width: 40em){
-  .tabs{
-    display: block;
-    z-index: 900;
-    position: fixed;
-    transform: translateX(100%);
-    inset: 0 0 0 50%;
-    padding: min(25vh, 10rem) 2em;
-    flex-direction: column;
-    background-color: white;
-    transition: transform 350ms ease-in-out;
+/* Media query for screens smaller than 600px */
+@media (max-width: 600px) {
+  .navbar {
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center items */
   }
 
-  .tab{
-    font-size: 20px;
-    color: white;
-    padding: 0;
-    margin: 0;
+  .nav-items {
+    flex-direction: column; /* Stack nav items vertically */
   }
 
-  .tabs[data-visible="true"]
-  {
-    transform: translateX(0%);
-  }
-  .mobile-nav-toggle{
-    display: block;
-    z-index: 1000;
-    position: absolute;
-    background: transparent;
-    width: 2em;
-    aspect-ratio: 1/1;
-    top: -1vh;
-    right: 20vw;
-  }
-  .mobile-nav-toggle-middle,
-  .mobile-nav-toggle-top,
-  .mobile-nav-toggle-bottom{
-    display: block;
-    position: absolute;
-    z-index: 1000;
-    width: 50px;
-    top: 2.5em;
-    height: clamp(0.1rem, 0.6vh, 0.375rem);
-    background-color: black;
-    border-radius: 50px;
-    transition: 350ms ease;
-  }
-  .mobile-nav-toggle-middle{
-    top: 3.5em; 
+  .nav-item {
+    margin: 5px 0; /* Adjust margin for vertical layout */
   }
 
-  .mobile-nav-toggle-bottom{
-    top: 4.5em;
-  }
-  .mobile-nav-toggle-top[area-expanded="true"]{
-    transform: rotate(-45deg);
-    transform-origin: right;
-    width: 43.75px;
-    top: min(1.75vh, 2.5rem);
-    background-color: white;
-  }
-  .mobile-nav-toggle-middle[area-expanded="true"]{
-    background-color: transparent;
-  }
-  .mobile-nav-toggle-bottom[area-expanded="true"]{
-    transform: rotate(45deg);
-    transform-origin: right;
-    width: 43.75px;
-    top: min(1.75vh + 30.935921677px, 4.0625rem);
-    background-color: white;
+  .spacer {
+    display: none; /* Hide spacer in mobile view */
   }
 }
+
