@@ -7,38 +7,37 @@ import ferryIconUrl from '../resources/ferry_icon.png';
 import expressIconUrl from '../resources/express_icon.png';
 import suburbanIconUrl from '../resources/suburban_icon.png';
 
-const busIcon = L.divIcon({
-  html: `<div class="generic-icon"></div>`,
+const busIcon = L.icon({
   iconUrl: busIconUrl,
   iconSize: [40, 40],
 });
 
-const trainIcon = L.divIcon({
+const trainIcon = L.icon({
   iconUrl: trainIconUrl,
   iconSize: [25, 25],
 });
 
-const tramIcon = L.divIcon({
+const tramIcon = L.icon({
   iconUrl: tramIconUrl,
   iconSize: [40, 20],
 });
 
-const subwayIcon = L.divIcon({
+const subwayIcon = L.icon({
   iconUrl: subwayIconUrl,
   iconSize: [40, 40],
 });
 
-const ferryIcon = L.divIcon({
+const ferryIcon = L.icon({
   iconUrl: ferryIconUrl, 
   iconSize: [40, 40],
 });
 
-const expressIcon = L.divIcon({
+const expressIcon = L.icon({
   iconUrl: expressIconUrl,
   iconSize: [40, 40],
 });
 
-const suburbanIcon = L.divIcon({
+const suburbanIcon = L.icon({
   iconUrl: suburbanIconUrl,
   iconSize: [32, 32],
 });
