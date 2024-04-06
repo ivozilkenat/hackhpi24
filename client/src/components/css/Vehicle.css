@@ -1,3 +1,17 @@
 .bus{
 
 }
+
+.vehicle-icon {
+    width: 24px;  /* Icon width */
+    height: 24px; /* Icon height */
+    background-color: #007bff; /* Icon background color - blue */
+    border-radius: 50%; /* Circular shape */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2); /* Subtle shadow for depth */
+    color: white; /* Icon text color */
+    font-size: 12px; /* Icon text size */
+    font-family: Arial, sans-serif; /* Font for any text inside the icon */
+  }
