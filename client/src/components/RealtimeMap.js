@@ -6,8 +6,9 @@ import 'leaflet-realtime';
 import { Marker, Circle } from 'react-leaflet';
 import { Popup } from 'react-leaflet';
 import { MapContainer, TileLayer, useMap } from 'react-leaflet';
-import getIcon from './VehicleIcons';
+import VehicleIcons from './VehicleIcons';
 import { fetchCurrentData } from './ApiCall';
+import { getIcon, getColor } from './VehicleIcons';
 
 function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
@@ -30,13 +31,13 @@ function RealtimeMap() {
   }, []);
 
   useEffect(() => {
-    fetchCurrentData(map, 'stations') // use fetchCurrentData with 'stations' route
+    fetchCurrentData(map, 'stations')
       .then(data => {
         setStations(data);
       });
   }, []);
-
-  return Object.values(data).map(item => {
+  
+  const tripMarkers = Object.values(data).map(item => {
     let icon;
     let colorClass;
     if (item.utilization.rel < 0.3) {
@@ -67,6 +68,23 @@ function RealtimeMap() {
       </Circle>
     );
   });
+  
+  const stationMarkers = Object.values(stations).map(item => {
+    let color = getColor(item.products);
+    return (
+    <Circle center={[item.position.lat, item.position.lon]} radius={100} color={color}>
+      <Popup>
+        <h1>{item.name}</h1>
+        <p>
+          Absolute Utilization: {item.utilization.abs} <br/>
+          Relative Utilization: {item.utilization.rel}
+        </p>
+      </Popup>
+    </Circle>
+    );
+  });
+
+  return [...tripMarkers, ...stationMarkers];
 }
 
 function MapComponent() {
