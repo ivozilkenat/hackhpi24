@@ -41,10 +41,12 @@ async def fetch_radar_data_periodically(period_time: int = 5):
             language="en"
         )
  
-        database.trafficDataDict = dict()
+        newTrafficDataDict = dict()
+        
         for movement in radar_data["movements"]:
             tripId = movement["tripId"].replace("|", "")
-            database.trafficDataDict[tripId] = trafficDataItem.TrafficDataItem(
+            
+            newTrafficDataDict[tripId] = trafficDataItem.TrafficDataItem(
                 id=tripId,
                 type=movement["line"]["mode"],
                 subType=movement["line"]["product"],
@@ -59,6 +61,12 @@ async def fetch_radar_data_periodically(period_time: int = 5):
                     rel=None
                 )
             )
+            
+            if tripId in database.trafficDataDict:
+                newTrafficDataDict[tripId].utilization = database.trafficDataDict[tripId].utilization
+            
+        database.trafficDataDict = newTrafficDataDict
+        
         await asyncio.sleep(period_time)  # Wait for n seconds
         
                 

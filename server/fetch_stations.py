@@ -30,14 +30,16 @@ async def fetch_station_data_periodically(period_time: int = 1800):
             results = 10000,
             distance = 50000000
         )
- 
-        database.stationDataDict = dict()
+
+        newStationDataDict = dict()
+
         for item in station_data:
+            stationId = item["id"]
                     
             # Map the external API response to your StationInfo model
             # This is a basic mapping, adjust according to the actual response structure and your model
-            database.stationDataDict[item["id"]] = database.station.StationDataItem(
-                id=item["id"],
+            database.stationDataDict[stationId] = database.station.StationDataItem(
+                id=stationId,
                 name=item["name"],
                 position=core.Position(
                     lat=item["location"]["latitude"], 
@@ -57,6 +59,12 @@ async def fetch_station_data_periodically(period_time: int = 1800):
                     rel=None
                 )
             )  # Update this based on the actual data and mapping logic
+            
+        if stationId in database.stationDataDict:
+                database.stationDataDict[stationId].utilization = database.stationDataDict[stationId].utilization
+            
+        database.stationDataDict = newStationDataDict
+            
         await asyncio.sleep(period_time)  # Wait for n seconds
         
                 
