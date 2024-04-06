@@ -36,6 +36,16 @@ const subwayIcon = L.icon({
 });
 
 const ferryIcon = L.icon({
+  iconUrl: suburbanIconUrl,
+  iconSize: [25, 41],
+});
+
+const expressIcon = L.icon({
+  iconUrl: expressIconUrl,
+  iconSize: [25, 41],
+});
+
+const suburbanIcon = L.icon({
   iconUrl: ferryIconUrl,
   iconSize: [25, 41],
 });
@@ -52,7 +62,7 @@ function RealtimeMap() {
       const hostname = window.location.hostname;
       const protocol = window.location.protocol;
       const port = hostname === "localhost" ? "3001" : "443";
-      fetch(`${protocol}//${hostname}:${port}/api/trafficData`, {
+      fetch(`${protocol}//${hostname}:${port}/api/trips`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -81,6 +91,15 @@ function RealtimeMap() {
 
   return Object.values(data).map(item => {
     let icon;
+    let colorClass;
+    if (item.utilization.rel < 0.3) {
+      colorClass = 'green-icon';
+    } else if (item.utilization.rel >= 0.3 && item.utilization.rel <= 0.7) {
+      colorClass = 'yellow-icon';
+    } else {
+      colorClass = 'red-icon';
+    }
+
     switch (item.subtype) {
       case "suburban":
         icon = suburbanIcon;
@@ -107,6 +126,8 @@ function RealtimeMap() {
         icon = busIcon;
         break;
     }
+
+    icon.options.className = colorClass;
 
     return (
       <Marker position={[item.position.lat, item.position.lon]} icon={icon}>
