@@ -19,7 +19,7 @@ const trainIcon = L.icon({
 
 const tramIcon = L.icon({
   iconUrl: tramIconUrl,
-  iconSize: [40, 20],
+  iconSize: [40, 40],
 });
 
 const subwayIcon = L.icon({

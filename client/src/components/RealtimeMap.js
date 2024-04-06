@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import L from 'leaflet';
 import './../../node_modules/leaflet/dist/leaflet.css'
 import './css/RealtimeMap.css';
+import './css/Vehicle.css';
 import 'leaflet-realtime';
 import { Marker, Circle } from 'react-leaflet';
 import { Popup } from 'react-leaflet';
@@ -40,7 +41,9 @@ function RealtimeMap() {
   const tripMarkers = Object.values(data).map(item => {
     let icon;
     let colorClass;
-    if (item.utilization.rel < 0.3) {
+    if (item.utilization.rel == null) {
+      colorClass = 'gray-icon';
+    } else if (item.utilization.rel < 0.3) {
       colorClass = 'green-icon';
     } else if (item.utilization.rel >= 0.3 && item.utilization.rel <= 0.7) {
       colorClass = 'yellow-icon';
@@ -75,7 +78,7 @@ function RealtimeMap() {
   const stationMarkers = Object.values(stations).map(item => {
     let color = getColor(item.products);
     return (
-    <Circle center={[item.position.lat, item.position.lon]} radius={100} color={color}>
+    <Circle center={[item.position.lat, item.position.lon]} radius={25} color={color}>
       <Popup>
         <h1>{item.name}</h1>
         <h2>Transportation mode(s): {
