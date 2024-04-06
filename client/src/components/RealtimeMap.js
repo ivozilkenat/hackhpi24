@@ -39,7 +39,6 @@ function RealtimeMap() {
   }, []);
   
   const tripMarkers = Object.values(data).map(item => {
-    console.log(item.utilization.rel);
     let icon;
     let colorClass;
     if (item.utilization.rel == null) {

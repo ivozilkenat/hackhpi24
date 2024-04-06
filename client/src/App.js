@@ -10,7 +10,7 @@ function App() {
   return (
     <div className="App">
       <Banner className="Banner"/>
-      <RouteSearchDiv className="RouteSearchDiv"/>
+      <RouteSearchDiv />
       <RealtimeMap className="RealtimeMap"/>
     </div>
   );

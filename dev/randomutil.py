@@ -4,8 +4,8 @@ import time
 
 
 def get_tripIDs():
-    url = f"https://hackhpi24.ivo-zilkenat.de/api/trips/"
-    #url = f"http://localhost:3001/api/trips/"
+    # url = f"https://hackhpi24.ivo-zilkenat.de/api/trips/"
+    url = f"http://localhost:3001/api/trips/"
     data = {"bounds": {"upper-left": {"lat": 40.7128,"lon": -74.006}, "lower-right": {"lat": 40.7128,"lon": -74.006}}}
     response = requests.post(url, json=data)
     if response.status_code == 200:

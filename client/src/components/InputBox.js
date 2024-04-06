@@ -81,6 +81,7 @@ function InputBox() {
 
     return (
         <div>
+      <h2>Route Search</h2>
             <input
                 type="text"
                 value={input1}
@@ -108,6 +109,8 @@ function InputBox() {
                     <option key={index} value={station} />
                 ))}
             </datalist>
+      <input type="date"/>
+      <input type="time"/>
         </div>
     );
 }
