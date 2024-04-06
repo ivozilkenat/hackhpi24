@@ -27,8 +27,8 @@ async def fetch_station_data_periodically(period_time: int = 1800):
         station_data = await fetch_station_data(
             latitude = 52.3905026974688,
             longitude = 13.082066256124243,
-            results = 10000,
-            distance = 50000000
+            results = 400,
+            distance = 50000
         )
 
         newStationDataDict = dict()
