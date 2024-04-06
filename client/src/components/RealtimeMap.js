@@ -2,97 +2,48 @@ import React, { useState, useEffect } from "react";
 import L from 'leaflet';
 import './../../node_modules/leaflet/dist/leaflet.css'
 import './css/RealtimeMap.css';
+import './css/Vehicle.css';
 import 'leaflet-realtime';
-import Vehicle from './Vehicle.js';
-import { Marker } from 'react-leaflet';
+import { Marker, Circle } from 'react-leaflet';
 import { Popup } from 'react-leaflet';
 import { MapContainer, TileLayer, useMap } from 'react-leaflet';
-import busIconUrl from '../resources/bus_icon.png';
-import trainIconUrl from '../resources/train_icon.png';
-import tramIconUrl from '../resources/tram_icon.png';
-import subwayIconUrl from '../resources/subway_icon.png';
-import ferryIconUrl from '../resources/ferry_icon.png';
-import expressIconUrl from '../resources/express_icon.png';
-import suburbanIconUrl from '../resources/suburban_icon.png';
+import VehicleIcons from './VehicleIcons';
+import { fetchCurrentData } from './ApiCall';
+import { getIcon, getColor } from './VehicleIcons';
 
-const busIcon = L.icon({
-  iconUrl: busIconUrl,
-  iconSize: [40, 40],
-});
-
-const trainIcon = L.icon({
-  iconUrl: trainIconUrl,
-  iconSize: [25, 41],
-});
-
-const tramIcon = L.icon({
-  iconUrl: tramIconUrl,
-  iconSize: [25, 41],
-});
-
-const subwayIcon = L.icon({
-  iconUrl: subwayIconUrl,
-  iconSize: [25, 41],
-});
-
-const ferryIcon = L.icon({
-  iconUrl: suburbanIconUrl,
-  iconSize: [25, 41],
-});
-
-const expressIcon = L.icon({
-  iconUrl: expressIconUrl,
-  iconSize: [25, 41],
-});
-
-const suburbanIcon = L.icon({
-  iconUrl: ferryIconUrl,
-  iconSize: [25, 41],
-});
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
 
 function RealtimeMap() {
   const map = useMap();
   const [data, setData] = useState([]);
+  const [stations, setStations] = useState([]);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      const bounds = map.getBounds();
-      const upperLeft = bounds.getNorthWest();
-      const lowerRight = bounds.getSouthEast();
-      const hostname = window.location.hostname;
-      const protocol = window.location.protocol;
-      const port = hostname === "localhost" ? "3001" : "443";
-      fetch(`${protocol}//${hostname}:${port}/api/trips/`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          "bounds": {
-            "upper-left": {
-              "lat": upperLeft.lat,
-              "lon": upperLeft.lng
-            },
-            "lower-right": {
-              "lat": lowerRight.lat,
-              "lon": lowerRight.lng
-            }
-          }
-        })
-      })
-        .then(response => response.json())
+      fetchCurrentData(map, 'trips')
         .then(data => {
           setData(data);
         });
     }, 1000);
 
-  return () => clearInterval(interval);
-}, []);
+    return () => clearInterval(interval);
+  }, []);
 
-  return Object.values(data).map(item => {
+  useEffect(() => {
+    fetchCurrentData(map, 'stations')
+      .then(data => {
+        setStations(data);
+      });
+  }, []);
+  
+  const tripMarkers = Object.values(data).map(item => {
     let icon;
     let colorClass;
-    if (item.utilization.rel < 0.3) {
+    if (item.utilization.rel == null) {
+      colorClass = 'gray-icon';
+    } else if (item.utilization.rel < 0.3) {
       colorClass = 'green-icon';
     } else if (item.utilization.rel >= 0.3 && item.utilization.rel <= 0.7) {
       colorClass = 'yellow-icon';
@@ -100,39 +51,17 @@ function RealtimeMap() {
       colorClass = 'red-icon';
     }
 
-    switch (item.subtype) {
-      case "suburban":
-        icon = suburbanIcon;
-        break;
-      case "subway":
-        icon = subwayIcon;
-        break;
-      case "tram":
-        icon = tramIcon;
-        break;
-      case "bus":
-        icon = busIcon;
-        break;
-      case "ferry":
-        icon = ferryIcon;
-        break;
-      case "express":
-        icon = expressIcon;
-        break;
-      case "regional":
-        icon = trainIcon;
-        break;
-      default:
-        icon = busIcon;
-        break;
-    }
+    icon = getIcon(item.subType);
 
-    icon.options.className = colorClass;
+    icon.options.className = `${colorClass} vehicle-icon`;
 
     return (
       <Marker position={[item.position.lat, item.position.lon]} icon={icon}>
         <Popup>
           <p>
+            Type: {capitalizeFirstLetter(item.type)} <br/>
+            Line: {item.line} | Direction: {item.direction} <br/>
+            <br/>
             Absolute Utilization: {item.utilization.abs} <br/>
             Relative Utilization: {item.utilization.rel}
           </p>
@@ -140,11 +69,28 @@ function RealtimeMap() {
       </Marker>
     );
   });
+  
+  const stationMarkers = Object.values(stations).map(item => {
+    let color = getColor(item.products);
+    return (
+    <Circle center={[item.position.lat, item.position.lon]} radius={25} color={color}>
+      <Popup>
+        <h1>{item.name}</h1>
+        <p>
+          Absolute Utilization: {item.utilization.abs} <br/>
+          Relative Utilization: {item.utilization.rel}
+        </p>
+      </Popup>
+    </Circle>
+    );
+  });
+
+  return [...tripMarkers, ...stationMarkers];
 }
 
 function MapComponent() {
   return (
-    <MapContainer center={[52.3906, 13.0645]} zoom={13} className="map">
+    <MapContainer center={[52.3906, 13.0645]} zoom={13} zoomControl={false} className="map">
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
       <RealtimeMap />
     </MapContainer>

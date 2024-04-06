@@ -1,13 +1,15 @@
 import React from "react";
 import "./App.css"
 import MapComponent from './components/RealtimeMap';
-import HeaderBanner from "./components/HeaderBanner";
+import Banner from "./components/Banner";
+import InputBox from "./components/inputBox";
 
 function App() {
 
   return (
     <div className="App">
-      <main><HeaderBanner /></main>
+      <Banner />
+      <InputBox />
       <MapComponent />
     </div>
   );

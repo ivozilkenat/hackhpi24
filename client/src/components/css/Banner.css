@@ -1,0 +1,70 @@
+/* In Navbar.css */
+.navbar {
+  display: flex;
+  flex-direction: row; /* Default direction */
+  align-items: center;
+  justify-content: space-between; /* Align items with space between */
+  background-color: #333;
+  color: white;
+  padding: 5px 20px 5px 0px; /* Added padding to the right and left */
+  width: 100%; /* Full width */
+  position: fixed;
+  z-index: 1000; /* Ensures it's above the map */
+}
+
+.brand {
+  padding: 10px;
+  font-size: large;
+  font-weight: bold;
+  /* margin-left: 50px; */ /* Ensures some space between the brand and the nav items */
+}
+
+.nav-items {
+  display: flex; /* Display nav items in a row */
+}
+
+.nav-item {
+  margin: 0 10px;
+  padding: 5px 10px; /* Padding inside each nav item for better touch targets */
+  cursor: pointer;
+  background-color: #3c3c3c; /* Slightly darker background for clickable items */
+  border-radius: 5px; /* Rounded borders for a softer look */
+  transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+.nav-item:hover {
+  background-color: #555; /* Slightly lighter on hover for feedback */
+  text-decoration: none; /* Overrides the underline from previous styles if needed */
+}
+
+.nav-item a {
+  color: inherit; /* Makes the link color the same as the parent element */
+  text-decoration: none; /* Removes the underline from links */
+  cursor: default; /* Changes the cursor to the default arrow, not the pointer typically used for links */
+}
+
+/* Optional: Style for hover effect to make it look like normal text */
+.nav-item a:hover {
+  text-decoration: none;
+}
+
+/* Media query for screens smaller than 600px */
+@media (max-width: 600px) {
+  .navbar {
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center items */
+  }
+
+  .nav-items {
+    flex-direction: column; /* Stack nav items vertically */
+  }
+
+  .nav-item {
+    margin: 5px 0; /* Adjust margin for vertical layout */
+  }
+
+  .spacer {
+    display: none; /* Hide spacer in mobile view */
+  }
+}
+
