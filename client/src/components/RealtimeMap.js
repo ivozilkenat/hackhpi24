@@ -57,22 +57,26 @@ function RealtimeMap() {
     icon.options.className = `${colorClass} vehicle-icon`;
 
     return (
-      <Circle center={[item.position.lat, item.position.lon]} radius={100}>
-        <Marker position={[item.position.lat, item.position.lon]} icon={icon}>
-          <Popup>
-            <h1>
-              {capitalizeFirstLetter(item.type)}
-              </h1>
-            <h2>
-              {item.line} | To: {item.direction}
-              </h2>
-            <p>
-              Absolute Utilization: {item.utilization.abs} <br/>
-              Relative Utilization: {item.utilization.rel}
-            </p>
-          </Popup>
-        </Marker>
-      </Circle>
+      <Marker position={[item.position.lat, item.position.lon]} icon={icon}>
+        <Popup>
+        <div className="popup-content">
+          <div className="popup-heading">
+            Type: {capitalizeFirstLetter(item.subType)} | Line: {item.line}
+          </div>
+          <div className="popup-info">
+            <div className="info-line">
+              <span className="info-label">Direction:</span> {item.direction}
+            </div>
+            <div className="info-line">
+              <span className="info-label">Absolute Utilization:</span> {item.utilization.abs !== null ? item.utilization.abs : "null"}
+            </div>
+            <div className="info-line">
+              <span className="info-label">Relative Utilization:</span> {item.utilization.rel !== null ? item.utilization.rel : "null"}
+            </div>
+          </div>
+        </div>
+        </Popup>
+      </Marker>
     );
   });
   
@@ -81,17 +85,27 @@ function RealtimeMap() {
     return (
     <Circle center={[item.position.lat, item.position.lon]} radius={25} color={color}>
       <Popup>
-        <h1>{item.name}</h1>
-        <h2>Transportation mode(s): {
-          Object.entries(item.products)
-            .filter(([key, value]) => value)
-            .map(([key]) => key)
-            .join(', ')
-        }</h2>
-        <p>
-          Absolute Utilization: {item.utilization.abs} <br/>
-          Relative Utilization: {item.utilization.rel}
-        </p>
+      <div className="popup-content">
+        <div className="popup-heading">
+          {item.name}
+        </div>
+        <div className="popup-info">
+          <div className="info-line">
+            <span><span className="info-label">Transportation mode(s):</span> { 
+              Object.entries(item.products)
+                .filter(([key, value]) => value)
+                .map(([key]) => key)
+                .join(', ')
+            }</span>
+          </div>
+          <div className="info-line">
+            <span className="info-label">Absolute Utilization:</span> {item.utilization.abs !== null ? item.utilization.abs : 'null'}
+          </div>
+          <div className="info-line">
+            <span className="info-label">Relative Utilization:</span> {item.utilization.rel !== null ? item.utilization.rel : 'null'}
+          </div>
+        </div>
+      </div>
       </Popup>
     </Circle>
     );

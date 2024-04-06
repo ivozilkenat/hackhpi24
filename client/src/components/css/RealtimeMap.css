@@ -6,3 +6,28 @@
   margin-right: auto;
 }
 
+.popup-content {
+  max-width: 600px; /* or a higher value to allow more content in one line */
+  overflow-x: auto; /* Allows horizontal scrolling */
+}
+
+.popup-heading {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.popup-info .info-line {
+  background-color: #f2f2f2;
+  border-radius: 8px;
+  padding: 5px;
+  margin-top: 5px;
+  white-space: pre-wrap; /* Allows text to wrap */
+}
+
+.info-label {
+  font-weight: bold; /* Makes the label text bold */
+}
+
+.popup-heading, .popup-info .info-line {
+  white-space: nowrap;
+}
