@@ -3,7 +3,11 @@ import InputBox from "./InputBox";
 
 function RouteSearchDiv() {
   return (
-    <InputBox />
+    // <InputBox />
+    <div className="RouteSearchDiv">
+      <InputBox />
+
+    </div>
   );
 }
 
