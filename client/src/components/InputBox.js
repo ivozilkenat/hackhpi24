@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './css/InputBox.css';
 
 function InputBox() {
     const [input1, setInput1] = useState('');
@@ -80,6 +81,7 @@ function InputBox() {
 
     return (
         <div>
+      <h2>Route Search</h2>
             <input
                 type="text"
                 value={input1}
@@ -107,6 +109,8 @@ function InputBox() {
                     <option key={index} value={station} />
                 ))}
             </datalist>
+          <input type="date" className="date-box"/>
+          <input type="time" className="time-box"/>
         </div>
     );
 }

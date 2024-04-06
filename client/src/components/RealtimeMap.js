@@ -24,7 +24,7 @@ function RealtimeMap() {
     const interval = setInterval(() => {
       fetchCurrentData(map, 'trips')
         .then(data => {
-          setData(data);
+          setData(data); // {...data}
         });
     }, 1000);
 
@@ -34,11 +34,12 @@ function RealtimeMap() {
   useEffect(() => {
     fetchCurrentData(map, 'stations')
       .then(data => {
-        setStations(data);
+        setStations(data); // What does this do?
       });
   }, []);
   
   const tripMarkers = Object.values(data).map(item => {
+    // console.log(item.utilization.rel);
     let icon;
     let colorClass;
     if (item.utilization.rel == null) {
@@ -55,8 +56,10 @@ function RealtimeMap() {
 
     icon.options.className = `${colorClass} vehicle-icon`;
 
+    console.log(icon.options)
+
     return (
-      <Marker position={[item.position.lat, item.position.lon]} icon={icon}>
+      <Marker key={item.id} position={[item.position.lat, item.position.lon]} icon={icon}>
         <Popup>
         <div className="popup-content">
           <div className="popup-heading">
