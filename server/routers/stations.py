@@ -12,9 +12,6 @@ async def getStationId(stationName: str):
         if v.name == stationName: return v.id
     return {"No known station with that name."}
 
-@router.post("/stations/", response_model=float)
-async def getAverageUtilization(request: str):
-    relevant_entries = [x.utilization.rel for x in database.trafficDataDict.values() if x.line == request and x.utilization.rel != None]
-    if len(relevant_entries) > 0:
-        return mean(relevant_entries)
-    return 0
+@router.post("/stations/", response_model=Dict[str, station.StationDataItem])
+async def get_stations(request: core.BoundDataRequest):
+    return database.stationDataDict
