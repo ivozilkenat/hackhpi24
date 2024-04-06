@@ -9,6 +9,10 @@ import { MapContainer, TileLayer, useMap } from 'react-leaflet';
 import getIcon from './VehicleIcons';
 import { fetchCurrentData } from './ApiCall';
 
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 function RealtimeMap() {
   const map = useMap();
   const [data, setData] = useState([]);
@@ -43,14 +47,17 @@ function RealtimeMap() {
       colorClass = 'red-icon';
     }
 
-    icon = getIcon(item.subtype);
+    icon = getIcon(item.subType);
 
-    icon.options.className = colorClass;
+    icon.options.className = `${colorClass} vehicle-icon`;
 
     return (
       <Marker position={[item.position.lat, item.position.lon]} icon={icon}>
         <Popup>
           <p>
+            Type: {capitalizeFirstLetter(item.type)} <br/>
+            Line: {item.line} | Direction: {item.direction} <br/>
+            <br/>
             Absolute Utilization: {item.utilization.abs} <br/>
             Relative Utilization: {item.utilization.rel}
           </p>
