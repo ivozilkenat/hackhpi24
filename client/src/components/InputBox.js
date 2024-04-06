@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function App() {
+function InputBox() {
     const [input1, setInput1] = useState('');
     const [input2, setInput2] = useState('');
     const [suggestedStations1, setSuggestedStations1] = useState([]);
@@ -111,4 +111,4 @@ function App() {
     );
 }
 
-export default App;
+export default InputBox;

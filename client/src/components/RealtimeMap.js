@@ -56,10 +56,13 @@ function RealtimeMap() {
       <Circle center={[item.position.lat, item.position.lon]} radius={100}>
         <Marker position={[item.position.lat, item.position.lon]} icon={icon}>
           <Popup>
+            <h1>
+              {capitalizeFirstLetter(item.type)}
+              </h1>
+            <h2>
+              {item.line} | To: {item.direction}
+              </h2>
             <p>
-              Type: {capitalizeFirstLetter(item.type)} <br/>
-              Line: {item.line} | Direction: {item.direction} <br/>
-              <br/>
               Absolute Utilization: {item.utilization.abs} <br/>
               Relative Utilization: {item.utilization.rel}
             </p>
@@ -75,6 +78,12 @@ function RealtimeMap() {
     <Circle center={[item.position.lat, item.position.lon]} radius={100} color={color}>
       <Popup>
         <h1>{item.name}</h1>
+        <h2>Transportation mode(s): {
+          Object.entries(item.products)
+            .filter(([key, value]) => value)
+            .map(([key]) => key)
+            .join(', ')
+        }</h2>
         <p>
           Absolute Utilization: {item.utilization.abs} <br/>
           Relative Utilization: {item.utilization.rel}
