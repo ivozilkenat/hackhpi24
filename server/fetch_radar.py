@@ -1,6 +1,6 @@
 import httpx
 from fastapi import HTTPException
-from models import trafficDataItem
+from models import trafficDataItem, core
 import asyncio
 import database
 
@@ -26,9 +26,8 @@ async def fetch_radar_data(north: float, west: float, south: float, east: float,
     else:
         raise HTTPException(status_code=response.status_code, detail="Failed to fetch radar data from VBB API")
 
-async def fetch_radar_data_periodically(period_time: int = 1):
+async def fetch_radar_data_periodically(period_time: int = 5):
     while True:
-        await asyncio.sleep(period_time)  # Wait for n seconds
         # print("Fetching radar data...")
         radar_data = await fetch_radar_data(
             north=52.4288, 
@@ -36,8 +35,8 @@ async def fetch_radar_data_periodically(period_time: int = 1):
             south=52.35401, 
             east=13.16608, 
             results=1024, 
-            duration=period_time * 2, 
-            frames=2, 
+            duration=0, 
+            frames=0, 
             polylines=True, 
             language="en"
         )
@@ -49,16 +48,17 @@ async def fetch_radar_data_periodically(period_time: int = 1):
                 id=movement["tripId"],
                 type=movement["line"]["mode"],
                 subType=movement["line"]["product"],
-                position=trafficDataItem.Position(
+                position=core.Position(
                     lon=movement["location"]["longitude"],
                     lat=movement["location"]["latitude"]    
                 ),
                 line=movement["line"]["name"],
                 direction=movement["direction"],
-                utilization=trafficDataItem.Utilization(
+                utilization=core.Utilization(
                     abs=None, 
                     rel=None
                 )
             )
+        await asyncio.sleep(period_time)  # Wait for n seconds
         
                 
