@@ -90,6 +90,14 @@ function RealtimeMap() {
         </div>
         <div className="popup-info">
           <div className="info-line">
+            <span><span className="info-label">Transportation mode(s):</span> { 
+              Object.entries(item.products)
+                .filter(([key, value]) => value)
+                .map(([key]) => key)
+                .join(', ')
+            }</span>
+          </div>
+          <div className="info-line">
             <span className="info-label">Absolute Utilization:</span> {item.utilization.abs !== null ? item.utilization.abs : 'null'}
           </div>
           <div className="info-line">

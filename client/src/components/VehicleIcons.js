@@ -71,7 +71,7 @@ export function getColor(products) {
     return "red";
   } else if (products.tram) {
     return "blue";
-  } else if (products.bus) {
+  } else if (products.suburban) {
     return "yellow";
   } else if (products.ferry) {
     return "purple";
