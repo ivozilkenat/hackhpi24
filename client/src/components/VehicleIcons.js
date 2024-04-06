@@ -44,7 +44,7 @@ const suburbanIcon = L.divIcon({
 });
 
 
-function getIcon(subtype) {
+export function getIcon(subtype) {
   switch (subtype) {
     case "suburban":
       return suburbanIcon;
@@ -65,4 +65,18 @@ function getIcon(subtype) {
   }
 }
 
-export default getIcon;
+export function getColor(products) {
+  if (products.suburban) {
+    return "green";
+  } else if (products.subway) {
+    return "red";
+  } else if (products.tram) {
+    return "blue";
+  } else if (products.bus) {
+    return "yellow";
+  } else if (products.ferry) {
+    return "purple";
+  } else {
+    return "black";
+  }
+}

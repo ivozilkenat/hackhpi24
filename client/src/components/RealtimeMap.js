@@ -3,11 +3,12 @@ import L from 'leaflet';
 import './../../node_modules/leaflet/dist/leaflet.css'
 import './css/RealtimeMap.css';
 import 'leaflet-realtime';
-import { Marker } from 'react-leaflet';
+import { Marker, Circle } from 'react-leaflet';
 import { Popup } from 'react-leaflet';
 import { MapContainer, TileLayer, useMap } from 'react-leaflet';
-import getIcon from './VehicleIcons';
+import VehicleIcons from './VehicleIcons';
 import { fetchCurrentData } from './ApiCall';
+import { getIcon, getColor } from './VehicleIcons';
 
 function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
@@ -67,16 +68,17 @@ function RealtimeMap() {
   });
   
   const stationMarkers = Object.values(stations).map(item => {
+    let color = getColor(item.products);
     return (
-      <Marker position={[item.position.lat, item.position.lon]}>
-        <Popup>
-          <h1>{item.name}</h1>
-          <p>
-            Absolute Utilization: {item.utilization.abs} <br/>
-            Relative Utilization: {item.utilization.rel}
-          </p>
-        </Popup>
-      </Marker>
+    <Circle center={[item.position.lat, item.position.lon]} radius={100} color={color}>
+      <Popup>
+        <h1>{item.name}</h1>
+        <p>
+          Absolute Utilization: {item.utilization.abs} <br/>
+          Relative Utilization: {item.utilization.rel}
+        </p>
+      </Popup>
+    </Circle>
     );
   });
 
