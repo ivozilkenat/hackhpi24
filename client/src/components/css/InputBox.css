@@ -1,0 +1,18 @@
+.translucent-box {
+    background-color: rgba(255, 255, 255, 0.7); /* Translucent white background */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    width: 300px;
+    margin: 0 auto;
+    z-index: 999;
+  }
+  
+  .input-field {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    z-index: 9999;
+  }
+  
+  
