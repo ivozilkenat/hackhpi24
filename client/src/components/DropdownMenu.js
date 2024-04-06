@@ -10,7 +10,7 @@ import StorageIcon from '@rsuite/icons/Storage';
 function DropdownMenu(){ 
     return (
         <div className='dropdown'> 
-            <Dropdown title="More Information" icon={<MenuIcon />} size='lg'> 
+            <Dropdown title="More Information" icon={<MenuIcon />} size='lg' style={{color:'F7F9FB'}}> 
                 <Dropdown.Item icon={<PeoplesIcon />} className='dropdown_item' onClick={handleClick}> 
                     Team 
                 </Dropdown.Item> 

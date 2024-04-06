@@ -7,7 +7,7 @@ function App() {
 
   return (
     <div className="App">
-      <HeaderBanner />
+      <main><HeaderBanner /></main>
       <MapComponent />
     </div>
   );

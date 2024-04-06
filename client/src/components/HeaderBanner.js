@@ -6,7 +6,7 @@ import DropdownMenu from './DropdownMenu';
 function HeaderBanner(){ 
     return (
         <div className='banner'>
-            <Header />
+            <Header /> 
             <DropdownMenu />
         </div>
     );
