@@ -14,32 +14,32 @@ const busIcon = L.icon({
 
 const trainIcon = L.icon({
   iconUrl: trainIconUrl,
-  iconSize: [25, 41],
+  iconSize: [25, 25],
 });
 
 const tramIcon = L.icon({
   iconUrl: tramIconUrl,
-  iconSize: [25, 41],
+  iconSize: [40, 20],
 });
 
 const subwayIcon = L.icon({
   iconUrl: subwayIconUrl,
-  iconSize: [25, 41],
+  iconSize: [40, 40],
 });
 
 const ferryIcon = L.icon({
-  iconUrl: suburbanIconUrl,
-  iconSize: [25, 41],
+  iconUrl: ferryIconUrl, 
+  iconSize: [40, 40],
 });
 
 const expressIcon = L.icon({
   iconUrl: expressIconUrl,
-  iconSize: [25, 41],
+  iconSize: [40, 40],
 });
 
 const suburbanIcon = L.icon({
-  iconUrl: ferryIconUrl,
-  iconSize: [25, 41],
+  iconUrl: suburbanIconUrl,
+  iconSize: [32, 32],
 });
 
 
