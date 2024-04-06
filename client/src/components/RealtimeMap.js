@@ -12,16 +12,24 @@ import { fetchCurrentData } from './ApiCall';
 function RealtimeMap() {
   const map = useMap();
   const [data, setData] = useState([]);
+  const [stations, setStations] = useState([]);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      fetchCurrentData(map, 'trips') // use fetchCurrentData here
+      fetchCurrentData(map, 'trips')
         .then(data => {
           setData(data);
         });
     }, 1000);
 
     return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    fetchCurrentData(map, 'stations') // use fetchCurrentData with 'stations' route
+      .then(data => {
+        setStations(data);
+      });
   }, []);
 
   return Object.values(data).map(item => {
