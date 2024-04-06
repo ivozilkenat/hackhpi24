@@ -1,5 +1,5 @@
 .translucent-box {
-    background-color: rgba(255, 255, 255, 0.7); /* Translucent white background */
+    background-color: rgba(255, 255, 255, 0.7);
     border: 1px solid #ccc;
     border-radius: 5px;
     padding: 20px;
@@ -9,7 +9,7 @@
   }
   
   .input-field {
-    width: 100%;
+    width: 10%;
     padding: 10px;
     margin-bottom: 10px;
     z-index: 9999;
