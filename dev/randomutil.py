@@ -3,8 +3,8 @@ import random
 import time
 import numpy as np
 
-# BASEURL = f"https://hackhpi24.ivo-zilkenat.de/api/"
-BASEURL = f"http://localhost:3001/api/"
+BASEURL = f"https://hackhpi24.ivo-zilkenat.de/api/"
+# BASEURL = f"http://localhost:3001/api/"
 
 capacities = {"suburban": 600,
 "subway": 600,

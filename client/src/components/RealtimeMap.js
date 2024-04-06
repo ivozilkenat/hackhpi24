@@ -39,7 +39,6 @@ function RealtimeMap() {
   }, []);
   
   const tripMarkers = Object.values(data).map(item => {
-    // console.log(item.utilization.rel);
     let icon;
     let color;
     if (item.utilization.rel == null) {
@@ -53,8 +52,6 @@ function RealtimeMap() {
     }
 
     icon = getIcon(item.subType, color);
-
-    console.log(icon.options)
 
     return (
       <Marker key={item.id} position={[item.position.lat, item.position.lon]} icon={icon}>
