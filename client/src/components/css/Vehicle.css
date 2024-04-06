@@ -3,9 +3,8 @@
 }
 
 .vehicle-icon {
-    width: 24px;  /* Icon width */
-    height: 24px; /* Icon height */
-    background-color: #007bff; /* Icon background color - blue */
+    padding: 10px !important;
+    background-color: white; /* Icon background color - blue */
     border-radius: 50%; /* Circular shape */
     display: flex;
     justify-content: center;
@@ -15,3 +14,10 @@
     font-size: 12px; /* Icon text size */
     font-family: Arial, sans-serif; /* Font for any text inside the icon */
   }
+
+.test {
+    background-color: white;
+    display: block;
+    border-radius: 10px;
+    padding: 10px !important;
+}

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import L from 'leaflet';
 import './../../node_modules/leaflet/dist/leaflet.css'
 import './css/RealtimeMap.css';
+import './css/Vehicle.css';
 import 'leaflet-realtime';
 import { Marker, Circle } from 'react-leaflet';
 import { Popup } from 'react-leaflet';
@@ -53,26 +54,24 @@ function RealtimeMap() {
     icon.options.className = `${colorClass} vehicle-icon`;
 
     return (
-      <Circle center={[item.position.lat, item.position.lon]} radius={100}>
-        <Marker position={[item.position.lat, item.position.lon]} icon={icon}>
-          <Popup>
-            <p>
-              Type: {capitalizeFirstLetter(item.type)} <br/>
-              Line: {item.line} | Direction: {item.direction} <br/>
-              <br/>
-              Absolute Utilization: {item.utilization.abs} <br/>
-              Relative Utilization: {item.utilization.rel}
-            </p>
-          </Popup>
-        </Marker>
-      </Circle>
+      <Marker position={[item.position.lat, item.position.lon]} icon={icon}>
+        <Popup>
+          <p>
+            Type: {capitalizeFirstLetter(item.type)} <br/>
+            Line: {item.line} | Direction: {item.direction} <br/>
+            <br/>
+            Absolute Utilization: {item.utilization.abs} <br/>
+            Relative Utilization: {item.utilization.rel}
+          </p>
+        </Popup>
+      </Marker>
     );
   });
   
   const stationMarkers = Object.values(stations).map(item => {
     let color = getColor(item.products);
     return (
-    <Circle center={[item.position.lat, item.position.lon]} radius={100} color={color}>
+    <Circle center={[item.position.lat, item.position.lon]} radius={25} color={color}>
       <Popup>
         <h1>{item.name}</h1>
         <p>
