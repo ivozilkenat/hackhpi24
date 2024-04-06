@@ -109,8 +109,8 @@ function InputBox() {
                     <option key={index} value={station} />
                 ))}
             </datalist>
-      <input type="date"/>
-      <input type="time"/>
+          <input type="date" className="date-box"/>
+          <input type="time" className="time-box"/>
         </div>
     );
 }
