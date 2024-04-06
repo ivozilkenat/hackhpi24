@@ -1,0 +1,15 @@
+.dropdown {
+    margin-right: 20px;
+    margin-left: auto;
+    min-width: 250px;
+    font-size: large;
+}
+
+.dropdown_item {
+  min-width: 200px;
+  font-size: 20px;
+}
+
+.dropdown_titel {
+  font-size: 20px;
+}

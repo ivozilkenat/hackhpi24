@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
-import Axios from "axios";
+import React from "react";
+import "./App.css"
 import MapComponent from './components/RealtimeMap';
-import Title from './components/Title';
+import HeaderBanner from "./components/HeaderBanner";
 
 function App() {
 
   return (
     <div className="App">
-      <Title />
+      <HeaderBanner />
       <MapComponent />
     </div>
   );
