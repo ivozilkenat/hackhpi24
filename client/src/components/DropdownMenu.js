@@ -6,6 +6,7 @@ import MenuIcon from '@rsuite/icons/Menu';
 import PeoplesIcon from '@rsuite/icons/Peoples';
 import StorageIcon from '@rsuite/icons/Storage';
 
+// Creation of DropdownMenu
 
 function DropdownMenu(){ 
     return (
