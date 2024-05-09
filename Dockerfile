@@ -4,7 +4,6 @@ FROM python:3.10-slim
 # Set the working directory in the container
 WORKDIR /app
 
-# Copy the backend application's requirements file into the container
 COPY . .
 
 # Install Node.js
